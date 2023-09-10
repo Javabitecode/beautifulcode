@@ -1,0 +1,19 @@
+server:
+  port: ${SERVER_PORT_CHECKER:8080}
+  servlet:
+    encoding:
+      charset: UTF-8
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+  api-docs:
+    path: /docs
+
+spring:
+  messages:
+    encoding: UTF-8
+    basename: messages/messages
+  application:
+    name: checker
