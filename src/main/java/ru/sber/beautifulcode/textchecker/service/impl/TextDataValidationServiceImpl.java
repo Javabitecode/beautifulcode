@@ -12,12 +12,12 @@ import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 import ru.sber.beautifulcode.textchecker.model.Report;
 import ru.sber.beautifulcode.textchecker.model.TextData;
 import ru.sber.beautifulcode.textchecker.model.ValidationText;
-import ru.sber.beautifulcode.textchecker.service.DatasetValidationService;
+import ru.sber.beautifulcode.textchecker.service.TextDataValidationService;
 
 @Slf4j
 @Service
 @AllArgsConstructor
-public class DatasetValidationServiceImpl implements DatasetValidationService {
+public class TextDataValidationServiceImpl implements TextDataValidationService {
     private final TextValidationExecutor textValidationExecutor;
     private final ConstraintViolationMapper constraintViolationMapper;
     private final ValidationTextMapper validationTextMapper;
