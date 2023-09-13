@@ -1,6 +1,6 @@
 package ru.sber.beautifulcode.textchecker.validator.text.impl;
 
-import static ru.sber.beautifulcode.textchecker.constant.DefaultConstants.DEFAULT_PARAMS;
+import static ru.sber.beautifulcode.textchecker.constant.DefaultConstants.PARAMS;
 
 import java.util.Set;
 import lombok.Builder;
@@ -16,5 +16,5 @@ public class ValidationText {
 
     @NonNull
     @Builder.Default
-    Set<Param> params = DEFAULT_PARAMS;
+    Set<Param> params = PARAMS;
 }

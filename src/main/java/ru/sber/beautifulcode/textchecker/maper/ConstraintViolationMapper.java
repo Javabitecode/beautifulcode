@@ -27,6 +27,6 @@ public interface ConstraintViolationMapper {
 
     private boolean isCorrect(@NonNull final Set<ConstraintViolation> result) {
         return result.stream()
-            .anyMatch(res -> !res.isValid());
+            .allMatch(ConstraintViolation::isValid);
     }
 }

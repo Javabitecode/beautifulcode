@@ -8,6 +8,6 @@ import ru.sber.beautifulcode.textchecker.model.Report;
 @Mapper
 public interface ReportMapper {
 
-    @Mapping(target = "isCorrect", source = "correct")
+    @Mapping(source = "correct", target = "isCorrect")
     ReportRs toDto(Report report);
 }

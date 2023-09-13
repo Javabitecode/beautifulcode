@@ -18,8 +18,9 @@ import ru.sber.beautifulcode.textchecker.validator.ValidationExecutor;
 public class TextValidationExecutor implements ValidationExecutor<ValidationText> {
     private final TextValidatorFactory textValidatorFactory;
 
+    @NonNull
     @Override
-    public Set<ConstraintViolation> execute(ValidationText validationText) {
+    public Set<ConstraintViolation> execute(@NonNull final ValidationText validationText) {
         return validationText.getParams().stream()
             .map(validate(validationText))
             .filter(Objects::nonNull)
@@ -27,10 +28,10 @@ public class TextValidationExecutor implements ValidationExecutor<ValidationText
     }
 
     @NonNull
-    private Function<Param, ConstraintViolation> validate(ValidationText validationText) {
+    private Function<Param, ConstraintViolation> validate(@NonNull final ValidationText validationText) {
         return param -> {
-            var type = ValidatorTypeEnum.getEnum(param.getName());
-            var validator = textValidatorFactory.getValidator(type);
+            var validatorType = ValidatorTypeEnum.getEnum(param.getName());
+            var validator = textValidatorFactory.get(validatorType);
             return validator != null
                 ? validator.validate(validationText.getText(), param)
                 : null;

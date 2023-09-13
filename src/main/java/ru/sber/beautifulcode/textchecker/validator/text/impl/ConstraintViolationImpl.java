@@ -8,4 +8,5 @@ import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
 @Builder
 public class ConstraintViolationImpl implements ConstraintViolation {
     private boolean valid;
+    private String message;
 }

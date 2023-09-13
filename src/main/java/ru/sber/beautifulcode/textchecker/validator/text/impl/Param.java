@@ -12,6 +12,7 @@ public class Param {
 
     @NonNull
     private String name;
+
     @NonNull
     private List<String> values;
 }
