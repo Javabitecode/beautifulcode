@@ -2,6 +2,7 @@ package ru.sber.beautifulcode.textchecker.validator;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import ru.sber.beautifulcode.textchecker.enums.ValidatorTypeEnum;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 
 public interface Validator<V, P> {
 

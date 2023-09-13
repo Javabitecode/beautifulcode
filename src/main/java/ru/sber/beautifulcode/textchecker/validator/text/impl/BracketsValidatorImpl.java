@@ -12,11 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.stereotype.Component;
+import ru.sber.beautifulcode.textchecker.checker.impl.CharacterPairChecker;
 import ru.sber.beautifulcode.textchecker.enums.BracketEnum;
 import ru.sber.beautifulcode.textchecker.enums.ValidatorTypeEnum;
 import ru.sber.beautifulcode.textchecker.exception.ValidationException;
 import ru.sber.beautifulcode.textchecker.model.CharValidationPair;
-import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
+import ru.sber.beautifulcode.textchecker.model.Param;
+import ru.sber.beautifulcode.textchecker.model.impl.ConstraintViolationImpl;
 import ru.sber.beautifulcode.textchecker.validator.text.TextValidator;
 
 @Slf4j

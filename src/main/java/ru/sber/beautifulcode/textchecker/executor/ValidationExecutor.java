@@ -1,7 +1,8 @@
-package ru.sber.beautifulcode.textchecker.validator;
+package ru.sber.beautifulcode.textchecker.executor;
 
 import java.util.Set;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 
 public interface ValidationExecutor<V> {
     /**

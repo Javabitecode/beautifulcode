@@ -1,4 +1,4 @@
-package ru.sber.beautifulcode.textchecker.validator;
+package ru.sber.beautifulcode.textchecker.checker;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 

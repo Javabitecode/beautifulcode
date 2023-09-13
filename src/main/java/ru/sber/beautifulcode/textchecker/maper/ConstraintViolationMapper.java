@@ -3,8 +3,8 @@ package ru.sber.beautifulcode.textchecker.maper;
 import java.util.Set;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.mapstruct.Mapper;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 import ru.sber.beautifulcode.textchecker.model.Report;
-import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
 
 @Mapper
 public interface ConstraintViolationMapper {

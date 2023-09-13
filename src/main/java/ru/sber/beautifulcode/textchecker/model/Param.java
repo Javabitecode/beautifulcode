@@ -1,4 +1,4 @@
-package ru.sber.beautifulcode.textchecker.validator.text.impl;
+package ru.sber.beautifulcode.textchecker.model;
 
 
 import java.util.List;

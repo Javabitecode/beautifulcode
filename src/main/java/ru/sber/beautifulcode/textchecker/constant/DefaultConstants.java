@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.sber.beautifulcode.textchecker.validator.text.impl.Param;
+import ru.sber.beautifulcode.textchecker.model.Param;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DefaultConstants {

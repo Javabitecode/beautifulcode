@@ -1,8 +1,8 @@
-package ru.sber.beautifulcode.textchecker.validator.text.impl;
+package ru.sber.beautifulcode.textchecker.model.impl;
 
 import lombok.Builder;
 import lombok.Data;
-import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 
 @Data
 @Builder

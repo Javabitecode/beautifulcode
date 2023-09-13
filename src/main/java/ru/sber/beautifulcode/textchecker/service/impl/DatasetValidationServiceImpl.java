@@ -5,14 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.stereotype.Service;
+import ru.sber.beautifulcode.textchecker.executor.impl.TextValidationExecutor;
 import ru.sber.beautifulcode.textchecker.maper.ConstraintViolationMapper;
 import ru.sber.beautifulcode.textchecker.maper.ValidationTextMapper;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 import ru.sber.beautifulcode.textchecker.model.Report;
 import ru.sber.beautifulcode.textchecker.model.TextData;
+import ru.sber.beautifulcode.textchecker.model.ValidationText;
 import ru.sber.beautifulcode.textchecker.service.DatasetValidationService;
-import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
-import ru.sber.beautifulcode.textchecker.validator.text.impl.TextValidationExecutor;
-import ru.sber.beautifulcode.textchecker.validator.text.impl.ValidationText;
 
 @Slf4j
 @Service

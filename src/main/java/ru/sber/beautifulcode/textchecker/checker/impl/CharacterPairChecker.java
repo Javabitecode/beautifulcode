@@ -1,4 +1,4 @@
-package ru.sber.beautifulcode.textchecker.validator.text.impl;
+package ru.sber.beautifulcode.textchecker.checker.impl;
 
 import static ru.sber.beautifulcode.textchecker.constant.ErrorConstants.CHECKER_FOUND_BLANK_SEQUENCE;
 import static ru.sber.beautifulcode.textchecker.constant.ErrorConstants.CHECKER_NOT_FOUND_PAIR;
@@ -15,8 +15,8 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
+import ru.sber.beautifulcode.textchecker.checker.Checker;
 import ru.sber.beautifulcode.textchecker.model.CharValidationPair;
-import ru.sber.beautifulcode.textchecker.validator.Checker;
 
 @Component
 @RequiredArgsConstructor

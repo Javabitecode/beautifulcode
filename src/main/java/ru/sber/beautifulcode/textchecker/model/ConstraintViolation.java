@@ -1,4 +1,4 @@
-package ru.sber.beautifulcode.textchecker.validator;
+package ru.sber.beautifulcode.textchecker.model;
 
 public interface ConstraintViolation {
 

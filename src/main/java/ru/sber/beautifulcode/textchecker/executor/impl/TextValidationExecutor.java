@@ -1,4 +1,4 @@
-package ru.sber.beautifulcode.textchecker.validator.text.impl;
+package ru.sber.beautifulcode.textchecker.executor.impl;
 
 
 import java.util.Objects;
@@ -9,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.stereotype.Component;
 import ru.sber.beautifulcode.textchecker.enums.ValidatorTypeEnum;
+import ru.sber.beautifulcode.textchecker.executor.ValidationExecutor;
 import ru.sber.beautifulcode.textchecker.factory.TextValidatorFactory;
-import ru.sber.beautifulcode.textchecker.validator.ConstraintViolation;
-import ru.sber.beautifulcode.textchecker.validator.ValidationExecutor;
+import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
+import ru.sber.beautifulcode.textchecker.model.Param;
+import ru.sber.beautifulcode.textchecker.model.ValidationText;
 
 @Component
 @RequiredArgsConstructor
