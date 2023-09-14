@@ -12,9 +12,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 public class ValidationText {
 
     @NonNull
-    String text;
+    private String text;
 
     @NonNull
     @Builder.Default
-    Set<Param> params = PARAMS;
+    private Set<Param> params = PARAMS;
 }

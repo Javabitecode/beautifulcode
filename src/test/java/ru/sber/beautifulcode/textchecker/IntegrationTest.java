@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -23,9 +24,11 @@ import ru.sber.beautifulcode.textchecker.config.MessageSourceConfig;
 public abstract class IntegrationTest {
     protected MockMvc mockMvc;
     @Autowired
-    private WebApplicationContext webApplicationContext;
+    protected WebApplicationContext webApplicationContext;
     @Autowired
-    private ObjectMapper objectMapper;
+    protected ObjectMapper objectMapper;
+    @Autowired
+    protected MessageSourceAccessor messageSourceAccessor;
 
     @SneakyThrows
     protected String toString(Object object) {

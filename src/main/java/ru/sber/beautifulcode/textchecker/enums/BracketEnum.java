@@ -15,9 +15,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 @Getter
 @RequiredArgsConstructor
 public enum BracketEnum {
-    ROUND('(', ')'),
-    SQUARE('[', ']');
-
+    ROUND('(', ')');
     private static final Map<String, BracketEnum> VALUES = Arrays.stream(values())
         .collect(Collectors.toMap(Enum::name, Function.identity()));
 

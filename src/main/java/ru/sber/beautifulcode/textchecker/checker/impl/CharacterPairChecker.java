@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -27,28 +26,37 @@ public class CharacterPairChecker implements Checker<List<CharValidationPair>, S
     @Override
     public List<CharValidationPair> check(@NonNull final String text,
                                           @NonNull final BiMap<Character, Character> pairs) {
-        List<CharValidationPair> pairsForValidate = new ArrayList<>();
-        Deque<CharValidationPair> deque = new LinkedList<>();
+        List<CharValidationPair> withPairs = new ArrayList<>();
+        Deque<CharValidationPair> withoutPairs = new LinkedList<>();
         var chars = text.toCharArray();
         for (int step = 0; step < chars.length; step++) {
             var element = chars[step];
             if (isFoundLeft(pairs, element)) {
-                deque.push(getCharPairWithLeft(element, step));
+                withoutPairs.push(getCharPairWithLeft(element, step));
             } else if (isFoundRight(pairs, element)) {
-                var left = deque.peek();
+                var left = withoutPairs.peek();
                 if (left != null && element == pairs.get(left.getLeft())) {
-                    deque.removeFirst();
+                    withoutPairs.removeFirst();
                     var charPair = getCharPair(element, step, left.getLeft(), left.getLeftIndex());
-                    pairsForValidate.add(charPair);
+                    withPairs.add(charPair);
                 } else {
-                    deque.push(getCharPairWithRight(element, step));
+                    withoutPairs.push(getCharPairWithRight(element, step));
                 }
             }
         }
-        var blankPairs = getAllBlanks(pairsForValidate, chars);
-        var withoutPair = getAllWithoutPair(deque);
-        blankPairs.addAll(withoutPair);
-        return blankPairs;
+        return getCharValidationPairsWithMessage(withPairs, withoutPairs, chars);
+    }
+
+    @NonNull
+    private List<CharValidationPair> getCharValidationPairsWithMessage(@NonNull final List<CharValidationPair> withPairs,
+                                                                       @NonNull final Deque<CharValidationPair> withoutPairs,
+                                                                       final char[] chars) {
+        var allBlanksWithMessage = getAllBlanksWithMessage(withPairs, chars);
+        var allWithoutPairWithMessage = getAllWithoutPairWithMessage(withoutPairs);
+        var pairsWithMessage = new ArrayList<CharValidationPair>();
+        pairsWithMessage.addAll(allBlanksWithMessage);
+        pairsWithMessage.addAll(allWithoutPairWithMessage);
+        return pairsWithMessage;
     }
 
     private boolean isFoundLeft(@NonNull final BiMap<Character, Character> pairs,
@@ -85,22 +93,24 @@ public class CharacterPairChecker implements Checker<List<CharValidationPair>, S
     }
 
     @NonNull
-    private Collection<CharValidationPair> getAllWithoutPair(@NonNull final Collection<CharValidationPair> charValidationPairs) {
+    private Collection<CharValidationPair> getAllWithoutPairWithMessage(@NonNull final Collection<CharValidationPair> charValidationPairs) {
         return charValidationPairs.stream()
             .map(charValidationPair -> getWithMessage(charValidationPair, CHECKER_NOT_FOUND_PAIR, new Object[]{charValidationPair}))
             .toList();
     }
 
     @NonNull
-    private List<CharValidationPair> getAllBlanks(@NonNull final List<CharValidationPair> pairsForValidate, final char[] chars) {
+    private List<CharValidationPair> getAllBlanksWithMessage(@NonNull final List<CharValidationPair> pairsForValidate, final char[] chars) {
         return pairsForValidate.stream()
-            .filter(charValidationPair -> {
-                var from = Math.incrementExact(charValidationPair.getLeftIndex());
-                var to = charValidationPair.getRightIndex();
-                return isBlank(chars, from, to);
-            })
+            .filter(charValidationPair -> isBlank(chars, charValidationPair))
             .map(charValidationPair -> getWithMessage(charValidationPair, CHECKER_FOUND_BLANK_SEQUENCE, new Object[]{charValidationPair}))
-            .collect(Collectors.toList());
+            .toList();
+    }
+
+    private boolean isBlank(char[] chars, CharValidationPair charValidationPair) {
+        var from = Math.incrementExact(charValidationPair.getLeftIndex());
+        var to = charValidationPair.getRightIndex();
+        return isBlank(chars, from, to);
     }
 
     private boolean isBlank(final char[] chars, final int from, final int to) {
