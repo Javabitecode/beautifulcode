@@ -10,14 +10,13 @@ import ru.sber.beautifulcode.textchecker.maper.ConstraintViolationMapper;
 import ru.sber.beautifulcode.textchecker.maper.ValidationTextMapper;
 import ru.sber.beautifulcode.textchecker.model.ConstraintViolation;
 import ru.sber.beautifulcode.textchecker.model.Report;
-import ru.sber.beautifulcode.textchecker.model.TextData;
-import ru.sber.beautifulcode.textchecker.model.ValidationText;
-import ru.sber.beautifulcode.textchecker.service.TextDataValidationService;
+import ru.sber.beautifulcode.textchecker.model.Text;
+import ru.sber.beautifulcode.textchecker.service.TextValidationService;
 
 @Slf4j
 @Service
 @AllArgsConstructor
-public class TextDataValidationServiceImpl implements TextDataValidationService {
+public class TextValidationServiceImpl implements TextValidationService {
     private final TextValidationExecutor textValidationExecutor;
     private final ConstraintViolationMapper constraintViolationMapper;
     private final ValidationTextMapper validationTextMapper;
@@ -25,16 +24,16 @@ public class TextDataValidationServiceImpl implements TextDataValidationService 
 
     @NonNull
     @Override
-    public Report validate(@NonNull final TextData textData) {
-        ValidationText validationText = validationTextMapper.convert(textData);
-        var result = textValidationExecutor.execute(validationText);
-        logging(result);
-        return constraintViolationMapper.convert(result);
+    public Report validate(@NonNull final Text text) {
+        var validationText = validationTextMapper.convert(text);
+        var constraintViolations = textValidationExecutor.execute(validationText);
+        logging(constraintViolations);
+        return constraintViolationMapper.convert(constraintViolations);
     }
 
-    private void logging(@NonNull final Set<ConstraintViolation> result) {
-        result.stream()
-            .filter(res -> !res.isValid())
-            .forEach(res -> log.warn("Ошибки валидации: {}", res));
+    private void logging(@NonNull final Set<ConstraintViolation> constraintViolations) {
+        constraintViolations.stream()
+            .filter(violation -> !violation.isValid())
+            .forEach(violation -> log.warn("Ошибки валидации: {}", violation));
     }
 }

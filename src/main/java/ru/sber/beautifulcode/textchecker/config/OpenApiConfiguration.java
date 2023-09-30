@@ -3,7 +3,7 @@ package ru.sber.beautifulcode.textchecker.config;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.sber.beautifulcode.textchecker.controller.TextDataController;
+import ru.sber.beautifulcode.textchecker.controller.TextController;
 
 @Configuration
 public class OpenApiConfiguration {
@@ -11,7 +11,7 @@ public class OpenApiConfiguration {
     public GroupedOpenApi apiV1() {
         return GroupedOpenApi.builder()
             .group("v1")
-            .packagesToScan(TextDataController.class.getPackageName())
+            .packagesToScan(TextController.class.getPackageName())
             .build();
     }
 }

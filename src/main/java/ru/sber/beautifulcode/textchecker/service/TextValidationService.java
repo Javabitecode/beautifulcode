@@ -2,10 +2,10 @@ package ru.sber.beautifulcode.textchecker.service;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import ru.sber.beautifulcode.textchecker.model.Report;
-import ru.sber.beautifulcode.textchecker.model.TextData;
+import ru.sber.beautifulcode.textchecker.model.Text;
 
-public interface TextDataValidationService {
+public interface TextValidationService {
 
     @NonNull
-    Report validate(@NonNull final TextData textData);
+    Report validate(@NonNull final Text text);
 }

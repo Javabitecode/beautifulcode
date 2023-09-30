@@ -14,11 +14,15 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import ru.sber.beautifulcode.textchecker.dto.ReportRs;
-import ru.sber.beautifulcode.textchecker.dto.TextDataRq;
+import ru.sber.beautifulcode.textchecker.dto.TextRq;
 
 @Tag(name = "Проверка текстовых данных")
-public interface TextDataController {
+public interface TextController {
 
+    /**
+     * По ТЗ необходимо было использовать метод checkBrackets(...), url /checkBrackets и rq: String text.
+     * На мой взгляд, это плохо спроектированное api
+     */
     @Operation(summary = "Получить отчет о проверке текстовых данных")
     @ApiResponse(
         responseCode = OK,
@@ -29,5 +33,5 @@ public interface TextDataController {
         )
     )
     @PostMapping(CHECK_BRACKETS_PATH)
-    ReportRs checkBrackets(@RequestBody @Valid TextDataRq rq);
+    ReportRs checkBrackets(@RequestBody @Valid TextRq rq);
 }

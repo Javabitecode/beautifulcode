@@ -34,9 +34,9 @@ public class BracketsValidatorImpl implements TextValidator {
         checkParam(param);
         var brackets = BracketEnum.getAllByNames(param.getValues());
         var pairs = BracketEnum.getPairs(brackets);
-        var result = characterPairChecker.check(text, pairs);
-        var message = collectMessage(result);
-        return getConstraintViolation(result, message);
+        var validationPairs = characterPairChecker.check(text, pairs);
+        var message = collectMessage(validationPairs);
+        return getConstraintViolation(validationPairs, message);
     }
 
     @NonNull
@@ -59,18 +59,18 @@ public class BracketsValidatorImpl implements TextValidator {
     }
 
     @NonNull
-    private String collectMessage(@NonNull final List<CharValidationPair> result) {
-        return result.stream()
+    private String collectMessage(@NonNull final List<CharValidationPair> validationPairs) {
+        return validationPairs.stream()
             .map(CharValidationPair::getMessage)
             .filter(Objects::nonNull)
             .collect(Collectors.joining(", "));
     }
 
     @NonNull
-    private ConstraintViolationImpl getConstraintViolation(@NonNull final List<CharValidationPair> result,
+    private ConstraintViolationImpl getConstraintViolation(@NonNull final List<CharValidationPair> validationPairs,
                                                            @Nullable final String message) {
         return ConstraintViolationImpl.builder()
-            .valid(result.isEmpty())
+            .valid(validationPairs.isEmpty())
             .message(message)
             .build();
     }

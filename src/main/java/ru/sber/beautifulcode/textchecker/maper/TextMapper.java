@@ -1,11 +1,11 @@
 package ru.sber.beautifulcode.textchecker.maper;
 
 import org.mapstruct.Mapper;
+import ru.sber.beautifulcode.textchecker.dto.TextRq;
 import ru.sber.beautifulcode.textchecker.model.Text;
-import ru.sber.beautifulcode.textchecker.model.ValidationText;
 
 @Mapper
-public interface ValidationTextMapper {
+public interface TextMapper {
 
-    ValidationText convert(Text text);
+    Text toModel(TextRq rq);
 }

@@ -7,7 +7,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 @Data
 @Builder
-public class TextData {
+public class Text {
 
     @NonNull
     private String text;

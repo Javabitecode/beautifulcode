@@ -7,15 +7,15 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.apache.commons.lang3.StringUtils;
-import ru.sber.beautifulcode.textchecker.dto.TextDataRq;
+import ru.sber.beautifulcode.textchecker.dto.TextRq;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class TextDataSource {
-    public static final TextDataRq RQ_BLANK = TextDataRq.builder()
+public final class TextSource {
+    public static final TextRq RQ_BLANK = TextRq.builder()
         .text(StringUtils.SPACE)
         .build();
 
-    public static final TextDataRq RQ_TEXT_OVER_MAX_LENGTH = TextDataRq.builder()
+    public static final TextRq RQ_TEXT_OVER_MAX_LENGTH = TextRq.builder()
         .text(StringUtils.repeat('a', Math.incrementExact(MAX_NUMBER_OF_CHARACTERS_TO_BE_PROCESSED)))
         .build();
 
@@ -44,7 +44,7 @@ public final class TextDataSource {
     private static final String TEXT_UNSUCCESSFUL_7 = "(example)example)";
     private static final String TEXT_UNSUCCESSFUL_8 = "(((())))";
 
-    public static List<TextDataRq> getSuccessTextDataRqs() {
+    public static List<TextRq> getSuccessTextDataRqs() {
         return List.of(
             getTextDataRq(TEXT_SUCCESS_1),
             getTextDataRq(TEXT_SUCCESS_2),
@@ -57,7 +57,7 @@ public final class TextDataSource {
         );
     }
 
-    public static List<TextDataRq> getUnsuccessfulTextDataRqs() {
+    public static List<TextRq> getUnsuccessfulTextDataRqs() {
         return List.of(
             getTextDataRq(TEXT_UNSUCCESSFUL_1),
             getTextDataRq(TEXT_UNSUCCESSFUL_2),
@@ -70,8 +70,8 @@ public final class TextDataSource {
         );
     }
 
-    private static TextDataRq getTextDataRq(@NonNull final String text) {
-        return TextDataRq.builder()
+    private static TextRq getTextDataRq(@NonNull final String text) {
+        return TextRq.builder()
             .text(text)
             .build();
     }
